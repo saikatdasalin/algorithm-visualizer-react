@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --primary: 171 77% 36%;
+  --secondary: 198 93% 48%;
+  --accent: 221 83% 53%;
+  --info: 198 100% 38%;
+  --success: 160 84% 32%;
+  --warning: 34 89% 45%;
+  --error: 0 72% 51%;
+  --base-100: 220 100% 97%;
+  --base-200: 220 92% 94%;
+  --base-300: 221 86% 90%;
+  --base-content: 222 47% 11%;
+}
+
+[data-theme="algodark"] {
+  color-scheme: dark;
+  --primary: 174 72% 46%;
+  --secondary: 198 93% 60%;
+  --accent: 217 91% 69%;
+  --info: 198 93% 60%;
+  --success: 142 71% 45%;
+  --warning: 38 92% 50%;
+  --error: 0 84% 60%;
+  --base-100: 219 50% 10%;
+  --base-200: 218 50% 14%;
+  --base-300: 217 45% 19%;
+  --base-content: 214 95% 93%;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  @apply m-0 bg-base-100 font-sans text-base-content antialiased;
+}
+
+.app-shell {
+  @apply min-h-screen bg-mesh-light bg-fixed bg-base-100 text-base-content;
+}
+
+[data-theme="algodark"] .app-shell {
+  @apply bg-mesh-dark;
+}
+
+.panel-glass {
+  @apply bg-base-100 shadow-xl ring-1 ring-base-content ring-opacity-10 backdrop-blur-xl;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent;
+}
+
+.visual-grid {
+  background-image: linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bar-highlight {
+  filter: drop-shadow(0 0 12px rgba(45, 212, 191, 0.45));
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-sm {
+    @apply h-8 rounded-md px-3 text-xs;
+  }
+
+  .btn-xs {
+    @apply h-7 rounded px-2 text-xs;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:brightness-95;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:brightness-95;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white hover:brightness-95;
+  }
+
+  .btn-success {
+    @apply bg-success text-white hover:brightness-95;
+  }
+
+  .btn-warning {
+    @apply bg-warning text-slate-950 hover:brightness-95;
+  }
+
+  .btn-error {
+    @apply bg-error text-white hover:brightness-95;
+  }
+
+  .btn-info {
+    @apply bg-info text-white hover:brightness-95;
+  }
+
+  .btn-outline {
+    @apply border border-base-content bg-transparent text-base-content hover:bg-base-200;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-base-content hover:bg-base-200;
+  }
+
+  .btn-outline.btn-primary {
+    @apply border-primary text-primary hover:opacity-90;
+  }
+
+  .btn-outline.btn-info {
+    @apply border-info text-info hover:opacity-90;
+  }
+
+  .input,
+  .select,
+  .textarea {
+    @apply w-full rounded-xl border border-base-content/20 bg-base-100/85 px-3 py-2 text-sm text-base-content shadow-sm transition-all duration-200 placeholder:text-base-content/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary;
+    box-shadow: inset 0 1px 0 hsl(var(--base-content) / 0.06), 0 10px 28px hsl(var(--base-content) / 0.08);
+  }
+
+  .input,
+  .select {
+    @apply h-11;
+  }
+
+  .textarea {
+    @apply min-h-[5rem];
+  }
+
+  .input:hover,
+  .select:hover,
+  .textarea:hover {
+    @apply border-base-content/30 bg-base-100;
+  }
+
+  .input:focus-visible,
+  .select:focus-visible,
+  .textarea:focus-visible {
+    @apply border-primary/70;
+    box-shadow: inset 0 1px 0 hsl(var(--base-content) / 0.08), 0 0 0 3px hsl(var(--primary) / 0.18),
+      0 14px 32px hsl(var(--primary) / 0.16);
+  }
+
+  .select {
+    @apply cursor-pointer appearance-none pr-10;
+    background-image: linear-gradient(45deg, transparent 50%, hsl(var(--base-content) / 0.55) 50%),
+      linear-gradient(135deg, hsl(var(--base-content) / 0.55) 50%, transparent 50%),
+      linear-gradient(to right, hsl(var(--base-content) / 0.12), hsl(var(--base-content) / 0.12));
+    background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 13px) calc(50% - 2px), calc(100% - 2.5rem) 50%;
+    background-size: 5px 5px, 5px 5px, 1px 58%;
+    background-repeat: no-repeat;
+  }
+
+  .select option {
+    background: hsl(var(--base-100));
+    color: hsl(var(--base-content));
+  }
+
+  .input-bordered,
+  .select-bordered,
+  .textarea-bordered {
+    @apply border-base-content/25;
+  }
+
+  .form-control {
+    @apply flex flex-col gap-1;
+  }
+
+  .label-text {
+    @apply text-xs font-medium text-base-content;
+  }
+
+  .tabs,
+  .tabs-boxed {
+    @apply inline-flex items-center gap-1 rounded-lg bg-base-200 p-1;
+  }
+
+  .tab {
+    @apply inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium text-base-content transition-colors hover:text-base-content;
+  }
+
+  .tab-active {
+    @apply bg-base-100 text-base-content shadow-sm;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+
+  .badge-sm {
+    @apply px-2 py-0.5 text-[11px];
+  }
+
+  .badge-info {
+    @apply bg-info text-white;
+  }
+
+  .badge-warning {
+    @apply bg-warning text-slate-950;
+  }
+
+  .badge-success {
+    @apply bg-success text-white;
+  }
+
+  .badge-outline {
+    @apply border border-base-content bg-transparent text-base-content;
+  }
+
+  .range {
+    @apply h-2 w-full cursor-pointer appearance-none rounded-full bg-base-300;
+  }
+
+  .range::-webkit-slider-thumb {
+    @apply h-4 w-4 appearance-none rounded-full bg-primary;
+  }
+
+  .range::-moz-range-thumb {
+    @apply h-4 w-4 rounded-full border-0 bg-primary;
+  }
+
+  .range-primary::-webkit-slider-thumb {
+    @apply bg-primary;
+  }
+
+  .range-primary::-moz-range-thumb {
+    @apply bg-primary;
+  }
+
+  .modal {
+    @apply w-full max-w-2xl rounded-2xl bg-base-100 p-0 text-base-content shadow-2xl;
+    border: 0;
+  }
+
+  .modal::backdrop {
+    background: rgba(2, 6, 23, 0.66);
+    backdrop-filter: blur(2px);
+  }
+
+  .modal-box {
+    @apply p-6;
+  }
+
+  .modal-action {
+    @apply mt-5 flex justify-end;
+  }
+
+  .modal-backdrop {
+    @apply hidden;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
